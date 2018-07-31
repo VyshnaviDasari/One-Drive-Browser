@@ -118,38 +118,16 @@ export default class DetailsListExample extends Component {
     return (
       <div>
         <h3>Details List example</h3>
-        <p>This example uses the <a href='https://graph.microsoft.io/en-us/docs/api-reference/v1.0/api/item_list_children' target='_blank'><i>/me/drive/root/children</i></a> endpoint,
-         which returns the files and folders in the user's root drive. Results are paged when the number of drive items is greater than 100.</p> 
-        <br />
 
-        <Label>
-          Current selection:
-        </Label>
-        <p><i>{ this.state.selectionDetails }</i></p>
-        <br />
-
-        <TextField
-          label='Filter by name:'
-          onChanged={ this._onFilterChanged.bind(this) } />
-
-        <MarqueeSelection selection={ this._selection }>
-          <DetailsList
+        
+        <DetailsList
             items={ this.state.items }
             setKey='set'
             selection={ this._selection }
             onItemInvoked={ (item) => window.open(item.WebUrl) }
             onRenderItemColumn={ this._onRenderItemColumn.bind(this) }
             onRenderMissingItem={ () => this._onLoadNextPage() } />
-          { 
-            this.state.isLoading &&
-              <div>
-                <br />
-                <Spinner className='loadingSpinner' label='Loading...' />                
-                <br />
-              </div>
-          }
-        </MarqueeSelection>
-        <br />
+          
 
         {
           this.state.error &&

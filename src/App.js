@@ -14,7 +14,6 @@ import hello from 'hellojs';
 window.hello = hello;
 import GraphSdkHelper from './helpers/GraphSdkHelper';
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
-import PeoplePickerExample from './component-examples/PeoplePicker';
 import DetailsListExample from './component-examples/DetailsList';
 import { applicationId, redirectUri } from './helpers/config';
 
@@ -95,23 +94,12 @@ export default class App extends Component {
           <CommandBar
             items={[
               {
-                key: 'component-example-menu',
-                name: 'Choose component',
+                key: 'details-list-example',
+                name: 'OneDrive Files List',
                 disabled: !this.state.isAuthenticated,
                 ariaLabel: 'Choose a component example to render in the page',
-                items: [
-                  {
-                    key: 'people-picker-example',
-                    name: 'People Picker',
-                    onClick: () => { this.setState({ example: 'people-picker-example' }) }
-                  },
-                  {
-                    key: 'details-list-example',
-                    name: 'Details List',
-                    onClick: () => { this.setState({ example: 'details-list-example' }) }
-                  }
-                ]
-              }  
+                onClick: () => { this.setState({ example: 'details-list-example' }) }
+              }
             ]}
             farItems={[
               {
@@ -128,13 +116,12 @@ export default class App extends Component {
         </div>
         <div className="ms-font-m">
           <div>
-            <h2>Microsoft Graph Office UI Fabric React Sample</h2>
+            <h2>OneDrive Files</h2>
             {
 
               (!this.state.isAuthenticated || this.state.example === '') &&
               <div>
-              <p>This sample shows how you can use Microsoft Graph data in Office UI Fabric React components.</p>
-              <p>To get started, sign in and then choose a component example in the command bar.</p>
+              <p>To get started, sign in.</p>
               </div>
             }
           </div>
@@ -145,17 +132,12 @@ export default class App extends Component {
             this.state.isAuthenticated &&
               <div>
               {
-                this.state.example === 'people-picker-example' &&
-                <PeoplePickerExample />
-              }
-              {
                 this.state.example === 'details-list-example' &&
                 <DetailsListExample />
               }
               </div>
           }
           <br />
-          <p>Learn more about <a href="https://dev.office.com/fabric#/components" target="_blank">Fabric React components</a>.</p>
         </div>
       </div>
     );
